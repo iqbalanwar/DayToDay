@@ -6,10 +6,10 @@ Calendar App
 - Java (Spring Boot)
 - PostgreSQL
 
-# Design Decisions
+## Design Decisions
 
-# Completions
+## Completions
 
-# General Approach 
+## General Approach 
 
-# Challenges
+## Challenges
