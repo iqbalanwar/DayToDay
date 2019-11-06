@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Service
@@ -43,9 +44,10 @@ public class EventServiceImpl implements EventService {
         String username = securityController.getCurrentUserName();
         Long userId = userRepository.findByUsername(username).getId();
 
-        Date date = new Date(eventDate);
+//        Date date = new Date(eventDate);
+        Timestamp eventDateTimeStamp = new Timestamp(eventDate);
 
-        return eventRepository.findEventByDateAndUser(date, userId);
+        return eventRepository.findEventByDateAndUser(eventDateTimeStamp, userId);
     }
 
     @Override
