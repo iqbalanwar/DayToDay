@@ -39,11 +39,13 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Iterable<Event> listUserEventsFromDate(Date eventDate) {
+    public Iterable<Event> listUserEventsFromDate(Long eventDate) {
         String username = securityController.getCurrentUserName();
         Long userId = userRepository.findByUsername(username).getId();
 
-        return eventRepository.findUserEventsByDate(userId, eventDate);
+        Date date = new Date(eventDate);
+
+        return eventRepository.findEventByDateAndUser(date, userId);
     }
 
     @Override

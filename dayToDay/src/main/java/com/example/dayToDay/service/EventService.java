@@ -10,7 +10,7 @@ public interface EventService {
 
     public Iterable<Event> listUserEvents();
 
-    public Iterable<Event> listUserEventsFromDate(Date eventDate);
+    public Iterable<Event> listUserEventsFromDate(Long eventDate);
 
     public ResponseEntity deleteEventByIdInDB(Long postId);
 }
