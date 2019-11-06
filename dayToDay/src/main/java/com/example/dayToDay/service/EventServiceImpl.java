@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class EventServiceImpl implements EventService {
     @Autowired
@@ -37,11 +39,13 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Iterable<Event> listUserEventsFromDate() {
+    public Iterable<Event> listUserEventsFromDate(Long eventDate) {
         String username = securityController.getCurrentUserName();
         Long userId = userRepository.findByUsername(username).getId();
 
-        return eventRepository.findUserEventsFromDate(userId);
+        Date date = new Date(eventDate);
+
+        return eventRepository.findEventByDateAndUser(date, userId);
     }
 
     @Override
