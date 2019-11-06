@@ -13,8 +13,8 @@ import java.util.List;
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long> {
 
-    @Query("SELECT * FROM Event e WHERE e.date =:date AND e.user_id = :id")
-    public List<Event> findEventByDateAndUser(@Param("date") Timestamp timestamp,
+    @Query("SELECT * FROM Event e WHERE e.date =:date AND e.user_id =:id")
+    public List<Event> findEventByDateAndUser(@Param("date") Date timestamp,
                                            @Param("id") Long userId);
 
     // Maybe this should be specified for the month? Might be an refactoring problem
