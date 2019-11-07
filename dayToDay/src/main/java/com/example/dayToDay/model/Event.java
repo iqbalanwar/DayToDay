@@ -19,7 +19,7 @@ public class Event {
     private String description;
 
     @Column
-    private Date date;
+    private Long date;
 
     @Column
     private boolean completed;
@@ -48,9 +48,9 @@ public class Event {
         this.description = description;
     }
 
-    public Date getDate() { return date; }
+    public Long getDate() { return date; }
 
-    public void setDate(Date date) { this.date = date; }
+    public void setDate(Long date) { this.date = date; }
 
     public boolean isCompleted() { return completed; }
 
