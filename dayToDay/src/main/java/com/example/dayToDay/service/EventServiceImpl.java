@@ -43,9 +43,9 @@ public class EventServiceImpl implements EventService {
         String username = securityController.getCurrentUserName();
         Long userId = userRepository.findByUsername(username).getId();
 
-        Date date = new Date(eventDate);
+//        Date date = new Date(eventDate);
 
-        return eventRepository.findEventByDateAndUser(date, userId);
+        return eventRepository.findEventByDateAndUser(eventDate, userId);
     }
 
     @Override
