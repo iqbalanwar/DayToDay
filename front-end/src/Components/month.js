@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import dateFns from "date-fns";
 
 import Header from './Header';
+import Days from './Days';
+
 
 class Month extends Component {
 
@@ -10,7 +12,7 @@ class Month extends Component {
 
         this.state = {
             currentMonth: new Date(),
-            selectedDate: new Date
+            selectedDate: new Date()
         };
     }
 
@@ -33,6 +35,12 @@ class Month extends Component {
                     currentMonth = {this.state.currentMonth}
                     nextMonth = {this.nextMonth}
                     prevMonth = {this.prevMonth}
+                />
+                <Days
+                    currentMonth = {this.state.currentMonth}
+                    style = {{
+                        display: "flex"
+                    }}
                 />
             </div>  
         );

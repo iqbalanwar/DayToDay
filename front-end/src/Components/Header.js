@@ -7,22 +7,32 @@ function Header(props) {
     const dateFormat = "MMMM YYYY";
 
     return(
-        <div className="header">
-            <div className="leftArrow">
-                <div onClick={props.prevMonth}>
-                    left
-                </div>
-            </div>
-            <div className="center">
-                <span>
+        <div 
+            className="header"
+            style={
+                {display:'flex',
+                justifyContent:'space-around',
+                fontSize:'3vw',
+                backgroundColor:'lightgray'}
+            }
+        >
+            <span
+                className="leftArrow"
+                onClick={props.prevMonth}
+                style={{cursor:'pointer'}}
+            >
+                ←
+            </span>
+            <span className="center">
                 {dateFns.format(props.currentMonth, dateFormat)}
-                </span>
-            </div>
-            <div className="rightArrow">
-                <div onClick={props.nextMonth}>
-                    right
-                </div>
-            </div>
+            </span>
+            <span
+                className="rightArrow"
+                onClick={props.nextMonth}
+                style={{cursor:'pointer'}}
+            >
+                →
+            </span>
         </div>
     );
 }
