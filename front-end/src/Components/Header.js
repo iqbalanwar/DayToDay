@@ -13,6 +13,7 @@ function Header(props) {
                 {display:'flex',
                 justifyContent:'space-around',
                 fontSize:'3vw',
+                padding: '3vh 0',
                 backgroundColor:'lightgray'}
             }
         >
