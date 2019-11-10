@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import dateFns from "date-fns";
 
+// Custom Components
 import Header from './Header';
 import Days from './Days';
+import Cells from './Cells';
 
 
 class Month extends Component {
@@ -28,19 +30,24 @@ class Month extends Component {
         });
     };
 
+    onDateClick = (day) => {
+        this.setState({
+          selectedDate: day
+        });
+    };
+
     render() {
         return(
-            <div className="month">
+            <div className="month" style={{marginBottom: "200px"}}>
                 <Header 
                     currentMonth = {this.state.currentMonth}
                     nextMonth = {this.nextMonth}
                     prevMonth = {this.prevMonth}
                 />
-                <Days
-                    currentMonth = {this.state.currentMonth}
-                    style = {{
-                        display: "flex"
-                    }}
+                <Days/>
+                <Cells
+                    monthInfo = {this.state}
+                    onDateClick = {this.onDateClick}
                 />
             </div>  
         );

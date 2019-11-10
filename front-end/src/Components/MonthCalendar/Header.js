@@ -1,7 +1,6 @@
 import React from "react";
 import dateFns from "date-fns";
 
-
 function Header(props) {
 
     const dateFormat = "MMMM YYYY";
