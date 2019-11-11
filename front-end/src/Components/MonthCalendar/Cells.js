@@ -3,11 +3,12 @@ import dateFns from "date-fns";
 
 function Cells(props) {
 
-    const { currentMonth, selectedDate } = props.monthInfo;
-    const { onDateClick } = props.onDateClick;
+    const { currentMonth } = props.monthInfo;
+    // const { onDateClick } = props.onDateClick;
 
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
+    
     const startDate = dateFns.startOfWeek(monthStart);
     const endDate = dateFns.endOfWeek(monthEnd);
 

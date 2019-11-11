@@ -2,13 +2,13 @@ import React from "react";
 
 function Days() {
 
-    const days = [ "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday" ]
+    const days = [ "Sun",
+                "Mon",
+                "Tues",
+                "Wed",
+                "Thurs",
+                "Fri",
+                "Sat" ]
 
     return(
         <div 
