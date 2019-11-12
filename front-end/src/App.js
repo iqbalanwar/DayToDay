@@ -9,10 +9,9 @@ class App extends Component {
 
   state = {
     isLoggedIn: false,
-    user : {
-      username: "",
-      password: ""
-    }
+    username: "",
+    password: "",
+    token: ""
   }
 
   submitLogin = (e) => {
@@ -26,18 +25,18 @@ class App extends Component {
         'Content-Type' : 'application/json'
       },
       body: JSON.stringify({
-        username: this.state.user.username,
-        password: this.state.user.password
+        username: this.state.username,
+        password: this.state.password
       })
     })
       .then(res =>  res.json())
       .then(res => {
+        console.log(res, "I got a response!")
         this.setState({
-          user : {
-            username: "",
-            password: ""
-          },
-          token: res
+          username: "",
+          password: "",
+          token: res.token,
+          isLoggedIn: true
         })
       })
       .catch(error => {
@@ -60,17 +59,18 @@ class App extends Component {
           handleUsernameChange = {this.handleUsernameChange}
           handlePasswordChange = {this.handlePasswordChange}
           submitLogin = {this.submitLogin}
-          username={this.state.user.username}
-          password={this.state.user.password}
+          username={this.state.username}
+          password={this.state.password}
         />
 
-        <Calendar />
+        <Calendar token = {this.state.token}/>
 
         <footer style={{
           textAlign: "center",
           padding: "15px",
           color: "black",
-          fontSize: "1.5em"
+          fontSize: "1.5em",
+          borderTop: "1px solid black"
         }}> Iqbal Anwar &copy; </footer>
       </div>
     );

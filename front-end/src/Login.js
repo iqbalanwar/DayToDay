@@ -1,9 +1,14 @@
 import React from 'react';
 
-const Login = props => {
+const Login = (props) => {
     return(
         <form 
-            style={{padding: "300px"}}
+            style={{
+                padding: "30px",
+                display: "flex",
+                flexDirection: "column",
+                width: "20vw"
+            }}
             onSubmit = {props.submitLogin}
         >
             <label htmlFor="username">Username:
@@ -26,7 +31,7 @@ const Login = props => {
                 />
             </label>
             
-            <input type="submit" value="submit" />
+            <input type="submit" value="submit" style={{width:"10vw"}}/>
         </form>
     );
 }
