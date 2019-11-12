@@ -27,6 +27,10 @@ function Cells(props) {
                 <div
                     className={"day"}
                     key={day}
+
+
+                    // ONCLICK HERE DAY
+
                 >
                     <span 
                         className="dateNumber"

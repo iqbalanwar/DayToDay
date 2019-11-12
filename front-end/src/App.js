@@ -9,9 +9,11 @@ class App extends Component {
 
   state = {
     isLoggedIn: false,
-    username: "",
-    password: "",
-    token: ""
+    user: {
+      username: "",
+      password: "",
+      token: ""
+    }
   }
 
   submitLogin = (e) => {
@@ -25,17 +27,15 @@ class App extends Component {
         'Content-Type' : 'application/json'
       },
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
+        username: this.state.user.username,
+        password: this.state.user.password
       })
     })
       .then(res =>  res.json())
       .then(res => {
         console.log(res, "I got a response!")
         this.setState({
-          username: "",
-          password: "",
-          token: res.token,
+          user: {...this.state.user, password:"", token: res.token},
           isLoggedIn: true
         })
       })
@@ -45,25 +45,25 @@ class App extends Component {
   }
 
   handleUsernameChange = (e) => {
-    this.setState({username: e.target.value});
+    this.setState({user: {...this.state.user, username: e.target.value}});
   }
 
   handlePasswordChange = (e) => {
-      this.setState({password: e.target.value});
+    this.setState({user: {...this.state.user, password: e.target.value}});
   }
 
   render() {
     return (
       <div className="App">
-        <Login 
+        <Login
           handleUsernameChange = {this.handleUsernameChange}
           handlePasswordChange = {this.handlePasswordChange}
           submitLogin = {this.submitLogin}
-          username={this.state.username}
-          password={this.state.password}
+          username={this.state.user.username}
+          password={this.state.user.password}
         />
 
-        <Calendar token = {this.state.token}/>
+        <Calendar token = {this.state.user.token}/>
 
         <footer style={{
           textAlign: "center",

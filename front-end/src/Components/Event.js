@@ -24,7 +24,7 @@ const Event = (props) => {
                         width: "20vw"
                     }}
                 />
-                <input type="submit" value="submit"  />
+                <input type="submit" value="submit" />
             </form>
         </div>
     );
