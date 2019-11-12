@@ -38,7 +38,7 @@ class Month extends Component {
 
     render() {
         return(
-            <div className="month" style={{marginBottom: "200px"}}>
+            <div className="month" style={{marginBottom: "50px"}}>
                 <Header 
                     currentMonth = {this.state.currentMonth}
                     nextMonth = {this.nextMonth}

@@ -30,7 +30,7 @@ function Cells(props) {
                 >
                     <span 
                         className="dateNumber"
-                        style={{fontSize: "2.5vh"}}
+                        style={{fontSize: "1.5vw"}}
                     >{formattedDate}</span>
                 </div>
             );

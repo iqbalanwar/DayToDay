@@ -3,7 +3,7 @@ import './App.css';
 
 // Custom Components
 import Login from './Login';
-import Calendar from './Components/calendar';
+import Calendar from './Components/Calendar';
 
 class App extends Component {
 
@@ -71,7 +71,7 @@ class App extends Component {
           color: "black",
           fontSize: "1.5em",
           borderTop: "1px solid black"
-        }}> Iqbal Anwar &copy; </footer>
+        }}> <i>Day-To-Day</i> &copy; was made by Iqbal Anwar </footer>
       </div>
     );
   }
