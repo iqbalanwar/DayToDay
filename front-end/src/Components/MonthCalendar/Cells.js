@@ -3,14 +3,14 @@ import dateFns from "date-fns";
 
 function Cells(props) {
 
-    const { currentMonth } = props.monthInfo;
-    // const { onDateClick } = props.onDateClick;
+    const { currentMonth, onDateClick } = props.monthInfo;
 
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
     
     const startDate = dateFns.startOfWeek(monthStart);
     const endDate = dateFns.endOfWeek(monthEnd);
+
 
     const dateFormat = "D";
     const rows = [];
@@ -23,14 +23,17 @@ function Cells(props) {
         for (let i = 0; i < 7; i++) {
             formattedDate = dateFns.format(day, dateFormat);
 
+            // Localizes the day, so it doesn't return endDate,
+            // but instead takes today's date:
+            let today = day;
+            
             days.push(
                 <div
                     className={"day"}
                     key={day}
 
-
-                    // ONCLICK HERE DAY
-
+                    // Returns today's date
+                    onClick={() => onDateClick(today)}
                 >
                     <span 
                         className="dateNumber"

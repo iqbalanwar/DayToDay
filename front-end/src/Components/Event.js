@@ -26,6 +26,7 @@ const Event = (props) => {
                 />
                 <input type="submit" value="submit" />
             </form>
+            <div>Show events</div>
         </div>
     );
 }

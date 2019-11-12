@@ -9,7 +9,8 @@ class Calendar extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = {    // const getDate = dateFns.getDate();
+
             description: "",
             completed: false,
             currentMonth: new Date(),
@@ -17,47 +18,42 @@ class Calendar extends Component {
         }
     }
 
+    // FUNCTIONS FOR MONTH COMPONENT
     nextMonth = () => {
         this.setState({
           currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
         });
     };
-
     prevMonth = () => {
         this.setState({
             currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
         });
     };
-
     onDateClick = (day) => {
+        console.log(day);
         this.setState({
           selectedDate: day
         });
     };
 
+    // FUNCTIONS FOR EVENT COMPONENT
+    // submitNewEvent = (e) => {
+    //     e.preventDefault(); //stops page refresh
+    //     console.log('new event submission');
 
-
-
-
-
-
-    submitNewEvent = (e) => {
-        e.preventDefault(); //stops page refresh
-        console.log('new event submission');
-
-        fetch("http://localhost:8080/event", {
-          method: 'POST',
-          headers: {
-            'Accept' : 'application/json, text/plain, */*',
-            'Content-Type' : 'application/json'
-          },
-          body: JSON.stringify({
-            username: this.state.username,
-            password: this.state.password
-          })
-        })
-    }
-
+    //     fetch("http://localhost:8080/event", {
+    //       method: 'POST',
+    //       headers: {
+    //         'Accept' : 'application/json, text/plain, */*',
+    //         'Content-Type' : 'application/json'
+    //       },
+    //       body: JSON.stringify({
+    //         username: this.state.username,
+    //         password: this.state.password
+    //       })
+    //     })
+    //      USE getTime(this.state.selectedDate)
+    // }
     handleDescriptionChange = (e) => {
         this.setState({description: e.target.value});
     }

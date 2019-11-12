@@ -17,7 +17,6 @@ const Month = (props) => {
             <Days/>
             <Cells
                 monthInfo = {props}
-                onDateClick = {props.onDateClick}
             />
         </div>  
     );
