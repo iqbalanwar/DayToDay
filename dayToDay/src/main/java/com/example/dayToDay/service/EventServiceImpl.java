@@ -45,7 +45,7 @@ public class EventServiceImpl implements EventService {
 
 //        Date date = new Date(eventDate);
 
-        return eventRepository.findEventByDateAndUser(eventDate, userId);
+        return eventRepository.findEventByDateAndUserId(eventDate, userId);
     }
 
     @Override
