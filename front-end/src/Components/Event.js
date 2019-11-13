@@ -3,7 +3,11 @@ import React from 'react';
 const Event = (props) => {
 
     return(
-        <div>
+        <div style={{
+            border: "1px solid black",
+            width: "60vw",
+            margin: "5vh auto"
+        }}>
             <form 
                 style={{
                     margin: "0 auto 5vh auto",
@@ -26,7 +30,14 @@ const Event = (props) => {
                 />
                 <input type="submit" value="submit" />
             </form>
-            <div>Show events</div>
+
+            <strong><center>Show events from this date: </center></strong>
+            <div onClick={props.displayDayEvents}>
+                Load today's events:
+                {props.events.map((event, key) => {
+                    return <p key={key}>{event.description}</p>
+                })}
+            </div>
         </div>
     );
 }

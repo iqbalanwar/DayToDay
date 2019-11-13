@@ -26,6 +26,7 @@ function Cells(props) {
             // Localizes the day, so it doesn't return endDate,
             // but instead takes today's date:
             let today = day;
+            // let formatTodayDate = dateFns.format(day, "MM/DD/YYYY")?
             
             days.push(
                 <div
