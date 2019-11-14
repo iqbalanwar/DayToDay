@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Login = (props) => {
+const Signup = (props) => {
     return(
         <form 
             style={{
@@ -9,16 +9,16 @@ const Login = (props) => {
                 flexDirection: "column",
                 width: "20vw"
             }}
-            onSubmit = {props.submitLogin}
+            onSubmit = {props.submitSignup}
         >
-            <h3>Login</h3>
+            <h3>Sign up</h3>
             <label htmlFor="username">Username:
                 <input 
                     type="text"
                     placeholder="Username"
                     label="username" 
-                    value={props.username} 
-                    name="username"
+                    value={props.regUsername}
+                    name="regUsername"
                     onChange={props.handleInputChange}
                 />
             </label>
@@ -27,9 +27,9 @@ const Login = (props) => {
                 <input 
                     type="password" 
                     placeholder="Password"
-                    label="password"
-                    name="password" 
-                    value={props.password} 
+                    label="password" 
+                    value={props.regPassword}
+                    name="regPassword"
                     onChange={props.handleInputChange}
                 />
             </label>
@@ -39,4 +39,4 @@ const Login = (props) => {
     );
 }
 
-export default Login;
+export default Signup;

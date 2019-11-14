@@ -24,6 +24,13 @@ class Calendar extends Component {
         }
     }
 
+    // For whatever reason, the app needs prevProps to function
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.selectedDate !== prevState.selectedDate) {
+          this.displayDayEvents();
+        }
+    }
+
     // FUNCTIONS FOR MONTH COMPONENT
     nextMonth = () => {
         this.setState({
@@ -52,7 +59,7 @@ class Calendar extends Component {
         // Gives the selected date in milliseconds:
         let dateInMilliseconds = dateFns.getTime(this.state.selectedDate);
 
-        let dateFormat = "DDD MMM YYYY";
+        let dateFormat = "MMM DD, YYYY";
         let formattedDate = dateFns.format(this.state.selectedDate, dateFormat);
 
         fetch("http://localhost:8080/event", {
@@ -75,6 +82,7 @@ class Calendar extends Component {
             this.setState({
                 description: ""
             })
+            this.displayDayEvents();
         })
         .catch(error => {
             console.log(error);
@@ -86,23 +94,57 @@ class Calendar extends Component {
     }
 
     displayDayEvents = () => {
-        console.log("my events are shown!")
         let selectedDateTimestamp = dateFns.getTime(this.state.selectedDate);
         
-        fetch(`http://localhost:8080/event/list/?date=${selectedDateTimestamp}`, {
-          headers: {
+        fetch(`http://localhost:8080/event/list/${selectedDateTimestamp}`, {
+        headers: {
             'Accept' : 'application/json, text/plain, */*',
             'Content-Type' : 'application/json',
             "Authorization": "Bearer " + this.props.token
-          }    
+        }    
         })
         .then(res => res.json())
         .then(res => {
-            console.log(res);
+            if (res.error) {
+                res = false;
+            }
+            // THIS LOGIC HANDLES DATE CHANGE
+            // it should clear the events of the previous day
+            (this.state.events.length === 0) ? 
+                (this.setState({
+                    events: res,
+                    eventsLoaded: true
+                }))
+                :
+                (this.setState({
+                    events: [],
+                    eventsLoaded: false
+                }))
+            // No matter the date, this should be done
             this.setState({
                 events: res,
                 eventsLoaded: true
             })
+        })
+    }
+
+    deleteEvent = (eventId) => {
+        fetch((`http://localhost:8080/event/${eventId}`), {
+            method: 'DELETE',
+            headers: {
+                "Authorization": "Bearer " + this.props.token,
+                "Content-Type": "application/json"
+            }
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                alert("Event complete!");
+            } else {
+                alert("Something went wrong...");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
         })
     }
 
@@ -118,10 +160,13 @@ class Calendar extends Component {
                 />
                 <Event
                     description = {this.state.description}
+                    token = {this.props.token}
                     events = {this.state.events}
+                    selectedDate = {this.state.selectedDate}
                     submitNewEvent = {this.submitNewEvent}
                     handleDescriptionChange = {this.handleDescriptionChange}
                     displayDayEvents = {this.displayDayEvents}
+                    deleteEvent = {this.deleteEvent}
                 />
             </div>
         );
