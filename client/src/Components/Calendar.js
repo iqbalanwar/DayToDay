@@ -44,6 +44,10 @@ class Calendar extends Component {
         });
     };
 
+    // componentDidUpdate(){
+    //     if(this.props.token!="") this.displayDayEvents();
+    // }
+
     // FUNCTIONS FOR EVENT COMPONENT
     submitNewEvent = (e) => {
         e.preventDefault(); //stops page refresh
@@ -52,7 +56,7 @@ class Calendar extends Component {
         // Gives the selected date in milliseconds:
         let dateInMilliseconds = dateFns.getTime(this.state.selectedDate);
 
-        let dateFormat = "DDD MMM YYYY";
+        let dateFormat = "MMM DD, YYYY";
         let formattedDate = dateFns.format(this.state.selectedDate, dateFormat);
 
         fetch("http://localhost:8080/event", {
@@ -75,6 +79,7 @@ class Calendar extends Component {
             this.setState({
                 description: ""
             })
+            this.displayDayEvents();
         })
         .catch(error => {
             console.log(error);
@@ -89,7 +94,7 @@ class Calendar extends Component {
         console.log("my events are shown!")
         let selectedDateTimestamp = dateFns.getTime(this.state.selectedDate);
         
-        fetch(`http://localhost:8080/event/list/?date=${selectedDateTimestamp}`, {
+        fetch(`http://localhost:8080/event/list/${selectedDateTimestamp}`, {
           headers: {
             'Accept' : 'application/json, text/plain, */*',
             'Content-Type' : 'application/json',
@@ -98,7 +103,19 @@ class Calendar extends Component {
         })
         .then(res => res.json())
         .then(res => {
-            console.log(res);
+            // THIS LOGIC HANDLES DATE CHANGE
+            // it should clear the events of the previous day
+            (this.state.events.length === 0) ? 
+                (this.setState({
+                    events: res,
+                    eventsLoaded: true
+                }))
+                :
+                (this.setState({
+                    events: [],
+                    eventsLoaded: false
+                }))
+            // No matter the date, this should be done
             this.setState({
                 events: res,
                 eventsLoaded: true
@@ -119,6 +136,7 @@ class Calendar extends Component {
                 <Event
                     description = {this.state.description}
                     events = {this.state.events}
+                    selectedDate = {this.state.selectedDate}
                     submitNewEvent = {this.submitNewEvent}
                     handleDescriptionChange = {this.handleDescriptionChange}
                     displayDayEvents = {this.displayDayEvents}

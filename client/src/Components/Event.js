@@ -1,6 +1,9 @@
 import React from 'react';
+import dateFns from 'date-fns';
 
 const Event = (props) => {
+    let dateFormat = "MMM DD, YYYY";
+    let formattedDate = dateFns.format(props.selectedDate, dateFormat);
 
     return(
         <div style={{
@@ -31,9 +34,12 @@ const Event = (props) => {
                 <input type="submit" value="submit" />
             </form>
 
-            <strong><center>Show events from this date: </center></strong>
-            <div onClick={props.displayDayEvents}>
-                Load today's events:
+            
+            <div 
+                onClick={props.displayDayEvents}
+                style={{textAlign: "center"}}
+            >
+                <h3 style={{fontWeight: "bold"}}>Show events from {formattedDate}:</h3>
                 {props.events.map((event, key) => {
                     return <p key={key}>{event.description}</p>
                 })}
