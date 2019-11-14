@@ -136,12 +136,8 @@ class Calendar extends Component {
                 "Content-Type": "application/json"
             }
         })
-        // .then((res) => {
-        //     return res.json()
-        // })
         .then((res) => {
             if (res.status === 200) {
-                window.location.reload(false);
                 alert("Event complete!");
             } else {
                 alert("Something went wrong...");
