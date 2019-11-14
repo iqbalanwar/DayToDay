@@ -128,6 +128,30 @@ class Calendar extends Component {
         })
     }
 
+    deleteEvent = (eventId) => {
+        fetch((`http://localhost:8080/event/${eventId}`), {
+            method: 'DELETE',
+            headers: {
+                "Authorization": "Bearer " + this.props.token,
+                "Content-Type": "application/json"
+            }
+        })
+        // .then((res) => {
+        //     return res.json()
+        // })
+        .then((res) => {
+            if (res.status === 200) {
+                window.location.reload(false);
+                alert("Event complete!");
+            } else {
+                alert("Something went wrong...");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
     render() {
         return (
             <div className="calendar">
@@ -146,6 +170,7 @@ class Calendar extends Component {
                     submitNewEvent = {this.submitNewEvent}
                     handleDescriptionChange = {this.handleDescriptionChange}
                     displayDayEvents = {this.displayDayEvents}
+                    deleteEvent = {this.deleteEvent}
                 />
             </div>
         );

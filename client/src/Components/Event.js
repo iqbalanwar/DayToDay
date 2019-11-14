@@ -43,9 +43,9 @@ const Event = (props) => {
                 <button style={{fontWeight: "bold"}}>Show events from {formattedDate}:</button>
                 {props.events && props.events.map((event, key) => {
                     return (
-                        <div key={key}>
+                        <div id={event.id} key={key}>
                             <p>{event.description}</p>
-                            <button>Done?</button>
+                            <button onClick={() => props.deleteEvent(event.id)}>Done?</button>
                         </div>
                     )
                 })}
