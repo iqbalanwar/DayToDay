@@ -58,6 +58,8 @@ class App extends Component {
   }
 
   submitSignup = (e) => {
+    e.preventDefault();
+
     fetch("http://localhost:8080/signup", {
       method: 'POST',
       headers: {
@@ -65,15 +67,15 @@ class App extends Component {
         'Content-Type' : 'application/json'
       },
       body: JSON.stringify({
-        username: this.state.user.username,
-        password: this.state.user.password
+        username: this.state.user.regUsername,
+        password: this.state.user.regPassword
       })
     })
       .then(res =>  res.json())
       .then(res => {
         console.log(res, "I got a response!")
         this.setState({
-          user: {...this.state.user, password:"", token: res.token},
+          user: {...this.state.user, regPassword:"", token: res.token},
           isLoggedIn: true
         })
       })
@@ -92,20 +94,8 @@ class App extends Component {
     })
   }
 
-  handleUsernameChange = (e) => {
-    this.setState({user: {...this.state.user, username: e.target.value}});
-  }
-
-  handlePasswordChange = (e) => {
-    this.setState({user: {...this.state.user, password: e.target.value}});
-  }
-
-  handleSignUpUsernameChange = (e) => {
-    this.setState({user: {...this.state.user, regUsername: e.target.value}});
-  }
-
-  handleSignUpPasswordChange = (e) => {
-    this.setState({user: {...this.state.user, regPassword: e.target.value}});
+  handleInputChange = (e) => {
+    this.setState({user: {...this.state.user, [e.target.name]: e.target.value}});
   }
 
   // toggleSignOutButton = () => {
@@ -118,16 +108,14 @@ class App extends Component {
       <div className="App">
         <RegLogin>
           <Login
-            handleUsernameChange = {this.handleUsernameChange}
-            handlePasswordChange = {this.handlePasswordChange}
+            handleInputChange = {this.handleInputChange}
             submitLogin = {this.submitLogin}
             username = {this.state.user.username}
             password = {this.state.user.password}
           />
 
           <Signup
-            handleSignUpUsernameChange = {this.handleSignUpUsernameChange}
-            handleSignUpPasswordChange = {this.handleSignUpPasswordChange}
+            handleInputChange = {this.handleInputChange}
             submitSignup = {this.submitSignup}
             regUsername = {this.state.user.regUsername}
             regPassword = {this.state.user.regPassword}
@@ -141,9 +129,8 @@ class App extends Component {
         <footer style={{
           textAlign: "center",
           padding: "15px",
-          color: "black",
-          fontSize: "1.5em",
-          borderTop: "1px solid black"
+          color: "gray",
+          fontSize: "1em"
         }}> <i>Day-To-Day</i> &copy; was made by Iqbal Anwar </footer>
       </div>
     );

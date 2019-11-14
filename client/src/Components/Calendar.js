@@ -24,6 +24,13 @@ class Calendar extends Component {
         }
     }
 
+    // For whatever reason, the app needs prevProps to function
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.selectedDate !== prevState.selectedDate) {
+          this.displayDayEvents();
+        }
+    }
+
     // FUNCTIONS FOR MONTH COMPONENT
     nextMonth = () => {
         this.setState({
@@ -43,10 +50,6 @@ class Calendar extends Component {
           selectedDate: day
         });
     };
-
-    // componentDidUpdate(){
-    //     if(this.props.token!="") this.displayDayEvents();
-    // }
 
     // FUNCTIONS FOR EVENT COMPONENT
     submitNewEvent = (e) => {
@@ -91,18 +94,20 @@ class Calendar extends Component {
     }
 
     displayDayEvents = () => {
-        console.log("my events are shown!")
         let selectedDateTimestamp = dateFns.getTime(this.state.selectedDate);
         
         fetch(`http://localhost:8080/event/list/${selectedDateTimestamp}`, {
-          headers: {
+        headers: {
             'Accept' : 'application/json, text/plain, */*',
             'Content-Type' : 'application/json',
             "Authorization": "Bearer " + this.props.token
-          }    
+        }    
         })
         .then(res => res.json())
         .then(res => {
+            if (res.error) {
+                res = false;
+            }
             // THIS LOGIC HANDLES DATE CHANGE
             // it should clear the events of the previous day
             (this.state.events.length === 0) ? 
@@ -135,6 +140,7 @@ class Calendar extends Component {
                 />
                 <Event
                     description = {this.state.description}
+                    token = {this.props.token}
                     events = {this.state.events}
                     selectedDate = {this.state.selectedDate}
                     submitNewEvent = {this.submitNewEvent}

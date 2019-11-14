@@ -17,8 +17,9 @@ const Signup = (props) => {
                     type="text"
                     placeholder="Username"
                     label="username" 
-                    value={props.regUsername} 
-                    onChange={props.handleSignupUsernameChange}
+                    value={props.regUsername}
+                    name="regUsername"
+                    onChange={props.handleInputChange}
                 />
             </label>
             
@@ -26,9 +27,10 @@ const Signup = (props) => {
                 <input 
                     type="password" 
                     placeholder="Password"
-                    label="username" 
-                    value={props.regPassword} 
-                    onChange={props.handleSignupPasswordChange}
+                    label="password" 
+                    value={props.regPassword}
+                    name="regPassword"
+                    onChange={props.handleInputChange}
                 />
             </label>
             

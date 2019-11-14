@@ -2,6 +2,7 @@ import React from 'react';
 import dateFns from 'date-fns';
 
 const Event = (props) => {
+
     let dateFormat = "MMM DD, YYYY";
     let formattedDate = dateFns.format(props.selectedDate, dateFormat);
 
@@ -39,9 +40,14 @@ const Event = (props) => {
                 onClick={props.displayDayEvents}
                 style={{textAlign: "center"}}
             >
-                <h3 style={{fontWeight: "bold"}}>Show events from {formattedDate}:</h3>
-                {props.events.map((event, key) => {
-                    return <p key={key}>{event.description}</p>
+                <button style={{fontWeight: "bold"}}>Show events from {formattedDate}:</button>
+                {props.events && props.events.map((event, key) => {
+                    return (
+                        <div key={key}>
+                            <p>{event.description}</p>
+                            <button>Done?</button>
+                        </div>
+                    )
                 })}
             </div>
         </div>
