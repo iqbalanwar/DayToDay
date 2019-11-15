@@ -33,7 +33,7 @@ class App extends Component {
     e.preventDefault(); //stops page refresh
     console.log('login submission form');
     
-    fetch("http://localhost:8080/login", {
+    fetch("http://localhost:8081/login", {
       method: 'POST',
       headers: {
         'Accept' : 'application/json, text/plain, */*',
@@ -60,7 +60,7 @@ class App extends Component {
   submitSignup = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:8080/signup", {
+    fetch("http://localhost:8081/signup", {
       method: 'POST',
       headers: {
         'Accept' : 'application/json, text/plain, */*',

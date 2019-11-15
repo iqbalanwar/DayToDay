@@ -62,7 +62,7 @@ class Calendar extends Component {
         let dateFormat = "MMM DD, YYYY";
         let formattedDate = dateFns.format(this.state.selectedDate, dateFormat);
 
-        fetch("http://localhost:8080/event", {
+        fetch("http://localhost:8081/event", {
           method: 'POST',
           headers: {
             'Accept' : 'application/json, text/plain, */*',
@@ -96,7 +96,7 @@ class Calendar extends Component {
     displayDayEvents = () => {
         let selectedDateTimestamp = dateFns.getTime(this.state.selectedDate);
         
-        fetch(`http://localhost:8080/event/list/${selectedDateTimestamp}`, {
+        fetch(`http://localhost:8081/event/list/${selectedDateTimestamp}`, {
         headers: {
             'Accept' : 'application/json, text/plain, */*',
             'Content-Type' : 'application/json',
@@ -129,7 +129,7 @@ class Calendar extends Component {
     }
 
     deleteEvent = (eventId) => {
-        fetch((`http://localhost:8080/event/${eventId}`), {
+        fetch((`http://localhost:8081/event/${eventId}`), {
             method: 'DELETE',
             headers: {
                 "Authorization": "Bearer " + this.props.token,
