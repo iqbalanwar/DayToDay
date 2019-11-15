@@ -42,7 +42,7 @@ const Event = (props) => {
                     textAlign: "center"
                 }}
             >
-                <button style={{fontWeight: "bold", marginBottom: "5vh"}}>Show events from {formattedDate}:</button>
+                <button style={{fontWeight: "bold", marginBottom: "5vh"}}>Show events from {formattedDate}</button>
                 {props.events && props.events.map((event, key) => {
                     return (
                         <div 

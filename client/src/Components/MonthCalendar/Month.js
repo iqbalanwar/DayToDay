@@ -8,7 +8,14 @@ import Cells from './Cells';
 
 const Month = (props) => {
     return(
-        <div className="month" style={{marginBottom: "50px"}}>
+        <div 
+            className="month" 
+            style={{
+                marginBottom: "50px", 
+                width: "65vw", 
+                minWidth: "45vw"
+            }}
+        >
             <Header 
                 currentMonth = {props.currentMonth}
                 nextMonth = {props.nextMonth}

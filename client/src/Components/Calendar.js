@@ -43,9 +43,6 @@ class Calendar extends Component {
         });
     };
     onDateClick = (day) => {
-        // =================REMOVE THIS===================
-        console.log(day);
-
         this.setState({
           selectedDate: day
         });
@@ -54,13 +51,9 @@ class Calendar extends Component {
     // FUNCTIONS FOR EVENT COMPONENT
     submitNewEvent = (e) => {
         e.preventDefault(); //stops page refresh
-        console.log('new event submission');
 
         // Gives the selected date in milliseconds:
         let dateInMilliseconds = dateFns.getTime(this.state.selectedDate);
-
-        let dateFormat = "MMM DD, YYYY";
-        let formattedDate = dateFns.format(this.state.selectedDate, dateFormat);
 
         fetch("http://localhost:8081/event", {
           method: 'POST',
@@ -77,8 +70,6 @@ class Calendar extends Component {
         })
         .then(res =>  res.json())
         .then(res => {
-            console.log(res, "I got a response!")
-            alert(`You made an event for the date: ${formattedDate}`);
             this.setState({
                 description: ""
             })
@@ -150,7 +141,7 @@ class Calendar extends Component {
 
     render() {
         return (
-            <div className="calendar">
+            <div className="calendar" style={{display: "flex", flexWrap: "wrap", justifyContent: "space-around"}}>
                 <Month
                     nextMonth = {this.nextMonth}
                     prevMonth = {this.prevMonth}
@@ -158,7 +149,9 @@ class Calendar extends Component {
                     currentMonth = {this.state.currentMonth}
                     selectedDate = {this.state.selectedDate}
                 />
-                <Event
+                {(this.props.token === "" || this.props.token === undefined) ? 
+                (<p style={{textAlign: "center", fontSize: "2em"}}>Sign in to make events!</p>)
+                : (<Event
                     description = {this.state.description}
                     token = {this.props.token}
                     events = {this.state.events}
@@ -167,7 +160,9 @@ class Calendar extends Component {
                     handleDescriptionChange = {this.handleDescriptionChange}
                     displayDayEvents = {this.displayDayEvents}
                     deleteEvent = {this.deleteEvent}
-                />
+                  />)
+                }
+                
             </div>
         );
     }

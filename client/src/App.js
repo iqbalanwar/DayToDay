@@ -7,8 +7,11 @@ import Login from './Login';
 import Calendar from './Components/Calendar';
 import Signup from './Signup';
 
-const RegLogin = styled.div`
+const Div = styled.div`
   display: flex;
+  justify-content: space-around;
+  padding-bottom: 5vh;
+  border-bottom: "1px solid black";
 `;
 const SignOutButton = styled.button`
   height: 4vh;
@@ -86,7 +89,6 @@ class App extends Component {
 
   signOut = (e) => {
     e.preventDefault();
-    console.log("signing out!");
 
     this.setState({
       user: {username: "", password: "", token: ""},
@@ -106,23 +108,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <RegLogin>
-          <Login
-            handleInputChange = {this.handleInputChange}
-            submitLogin = {this.submitLogin}
-            username = {this.state.user.username}
-            password = {this.state.user.password}
-          />
-
-          <Signup
-            handleInputChange = {this.handleInputChange}
-            submitSignup = {this.submitSignup}
-            regUsername = {this.state.user.regUsername}
-            regPassword = {this.state.user.regPassword}
-          />
-
-          <SignOutButton onClick={this.state.signOut}>Sign out</SignOutButton>
-        </RegLogin>
+        {(this.state.user.token === "" || this.state.user.token === undefined) 
+          ? (<Div>
+              <Login
+                handleInputChange = {this.handleInputChange}
+                submitLogin = {this.submitLogin}
+                username = {this.state.user.username}
+                password = {this.state.user.password}
+              />
+    
+              <Signup
+                handleInputChange = {this.handleInputChange}
+                submitSignup = {this.submitSignup}
+                regUsername = {this.state.user.regUsername}
+                regPassword = {this.state.user.regPassword}
+              />
+            </Div>)
+          : (<Div>
+              <h3>Welcome {this.state.user.username}</h3>
+              <SignOutButton onClick={this.signOut}>Sign out</SignOutButton>
+            </Div>)
+        }
         
         <Calendar token = {this.state.user.token}/>
 

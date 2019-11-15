@@ -1,5 +1,15 @@
 import React from 'react';
 import dateFns from "date-fns";
+import styled from 'styled-components';
+
+const Span = styled.span`
+    font-size: "1.5vw";
+    cursor: pointer;
+    
+    &:hover {
+        color: "red";
+    }
+`;
 
 function Cells(props) {
 
@@ -26,7 +36,6 @@ function Cells(props) {
             // Localizes the day, so it doesn't return endDate,
             // but instead takes today's date:
             let today = day;
-            // let formatTodayDate = dateFns.format(day, "MM/DD/YYYY")?
             
             days.push(
                 <div
@@ -36,10 +45,7 @@ function Cells(props) {
                     // Returns today's date
                     onClick={() => onDateClick(today)}
                 >
-                    <span 
-                        className="dateNumber"
-                        style={{fontSize: "1.5vw"}}
-                    >{formattedDate}</span>
+                    <Span className="dateNumber">{formattedDate}</Span>
                 </div>
             );
             day = dateFns.addDays(day, 1);
@@ -54,7 +60,8 @@ function Cells(props) {
                     padding: "3vh 0",
                     borderBottom: "1px solid black"
                 }}
-                key={day}>
+                key={day}
+            >
                 {days}
             </div>
         );
