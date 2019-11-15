@@ -12,13 +12,13 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
 
-  zuul-gateway:
+  api-gateway:
     image: maven:3.6.1-jdk-8
     ports:
       - '8080:8080'
     working_dir: /app
     volumes:
-      - ./zuul-gateway:/app
+      - ./api-gateway:/app
     depends_on:
       - eureka
     command: 'mvn spring-boot:run'
