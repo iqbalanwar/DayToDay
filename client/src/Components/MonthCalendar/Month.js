@@ -12,7 +12,7 @@ const Month = (props) => {
             className="month" 
             style={{
                 marginBottom: "50px", 
-                width: "65vw", 
+                width: "50vw", 
                 minWidth: "45vw"
             }}
         >

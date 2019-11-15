@@ -3,11 +3,12 @@ import dateFns from "date-fns";
 import styled from 'styled-components';
 
 const Span = styled.span`
-    font-size: "1.5vw";
     cursor: pointer;
+    font-size: 2em;
     
     &:hover {
-        color: "red";
+        color: steelblue;
+        font-size: 2.2em;
     }
 `;
 

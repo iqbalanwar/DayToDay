@@ -13,7 +13,7 @@ function Header(props) {
                 justifyContent:'space-around',
                 fontSize:'3vw',
                 padding: '3vh 0',
-                backgroundColor:'lightgray'}
+                backgroundColor:'steelblue'}
             }
         >
             <span

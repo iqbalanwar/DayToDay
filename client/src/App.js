@@ -10,8 +10,9 @@ import Signup from './Signup';
 const Div = styled.div`
   display: flex;
   justify-content: space-around;
-  padding-bottom: 5vh;
-  border-bottom: "1px solid black";
+  padding-bottom: 2vh;
+  margin-bottom: 5vh;
+  border-bottom: 1px solid black;
 `;
 const SignOutButton = styled.button`
   height: 4vh;

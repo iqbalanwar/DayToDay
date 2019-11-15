@@ -9,8 +9,8 @@ const Event = (props) => {
     return(
         <div style={{
             border: "1px solid black",
-            width: "60vw",
-            margin: "5vh auto"
+            width: "40vw",
+            backgroundColor: "lightpink"
         }}>
             <form 
                 style={{
