@@ -38,12 +38,21 @@ const Event = (props) => {
             
             <div 
                 onClick={props.displayDayEvents}
-                style={{textAlign: "center"}}
+                style={{
+                    textAlign: "center"
+                }}
             >
-                <button style={{fontWeight: "bold"}}>Show events from {formattedDate}:</button>
+                <button style={{fontWeight: "bold", marginBottom: "5vh"}}>Show events from {formattedDate}:</button>
                 {props.events && props.events.map((event, key) => {
                     return (
-                        <div id={event.id} key={key}>
+                        <div 
+                            id={event.id} 
+                            key={key} 
+                            style={{
+                                borderTop: "1px solid black",
+                                width: "20vw",
+                                margin: "5vh auto"
+                            }}>
                             <p>{event.description}</p>
                             <button onClick={() => props.deleteEvent(event.id)}>Done?</button>
                         </div>

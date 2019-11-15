@@ -62,7 +62,7 @@ class Calendar extends Component {
         let dateFormat = "MMM DD, YYYY";
         let formattedDate = dateFns.format(this.state.selectedDate, dateFormat);
 
-        fetch("http://localhost:8080/event", {
+        fetch("http://localhost:8081/event", {
           method: 'POST',
           headers: {
             'Accept' : 'application/json, text/plain, */*',
